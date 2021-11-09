@@ -1,0 +1,53 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A dual axis chart, created by setting y's scale resolution to `\"independent\"`",
+  "width": 1800, "height": 600,
+  "data": {
+    "url": "https://raw.githubusercontent.com/data-for-good-bg/cov-curves/master/data/owid-covid-data-clean.csv"
+  },
+  "transform": [{"filter": "datum.iso_code == \"FRA\""}],
+  "encoding": {
+    "x": {
+      "field": "date"
+    }
+  },
+  "layer": [
+    {
+      "mark": {"opacity": 0.5, "type": "area", "color": "#e2bfbe"},
+      "encoding": {
+        "y": {
+          "aggregate": "average",
+          "field": "new_cases_smoothed_per_million",
+          "title": "cases per",
+          "axis": {"titleColor": "#e2bfbe"},
+          "scale": {"domain": [0, 1000]}
+        }
+      }
+    },
+   {
+      "mark": {"opacity": 1, "type": "line", "color": "#7a0808"},
+      "encoding": {
+        "y": {
+          "aggregate": "average",
+          "field": "new_deaths_smoothed_per_million",
+          "title": "deaths per 1M",
+          "axis": {"titleColor": "#7a0808"},
+          "scale": {"domain": [0, 50]}
+        }
+      }
+    },
+    {
+      "mark": {"stroke": "#3c7e06", "type": "line", "interpolate": "monotone"},
+      "encoding": {
+        "y": {
+          "aggregate": "average",
+          "field": "people_fully_vaccinated_per_hundred",
+          "title": "people_fully_vaccinated_per_hundred",
+          "axis": {"titleColor":"#3c7e06"},
+          "scale": {"domain": [0, 100]}
+        }
+      }
+    }
+  ],
+  "resolve": {"scale": {"y": "independent"}}
+}
