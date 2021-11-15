@@ -5,10 +5,13 @@
   "data": {
     "url": "https://raw.githubusercontent.com/data-for-good-bg/cov-curves/master/data/owid-covid-data-clean.csv"
   },
-  "transform": [{"filter": "datum.iso_code == \"FRA\""}],
+  "transform": [{"filter": "datum.iso_code == \"CAN\""}],
   "encoding": {
     "x": {
-      "field": "date"
+      "field": "date",
+      "axis":{
+          "labelOverlap":true
+      }
     }
   },
   "layer": [
@@ -43,7 +46,7 @@
           "aggregate": "average",
           "field": "people_fully_vaccinated_per_hundred",
           "title": "people_fully_vaccinated_per_hundred",
-          "axis": {"titleColor":"#3c7e06"},
+          "axis": {"titleColor":"#3c7e06", "offset":50},
           "scale": {"domain": [0, 100]}
         }
       }
