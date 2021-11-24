@@ -1,11 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "A dual axis chart, created by setting y's scale resolution to `\"independent\"`",
-  "width": 1800, "height": 600,
+  "width": 1800, "height": 1000,
+  "title" : "COVID19 cases, deaths and vaccination rate - UKRAINE",
   "data": {
     "url": "https://raw.githubusercontent.com/data-for-good-bg/cov-curves/master/data/owid-covid-data-clean.csv"
   },
-  "transform": [{"filter": "datum.iso_code == \"CAN\""}],
+  "transform": [{"filter": "datum.iso_code == \"UKR\""}],
   "encoding": {
     "x": {
       "field": "date",
@@ -21,9 +22,9 @@
         "y": {
           "aggregate": "average",
           "field": "new_cases_smoothed_per_million",
-          "title": "cases per",
+          "title": "cases per 1M",
           "axis": {"titleColor": "#e2bfbe"},
-          "scale": {"domain": [0, 1000]}
+          "scale": {"domain": [0, 1500]}
         }
       }
     },
@@ -34,7 +35,7 @@
           "aggregate": "average",
           "field": "new_deaths_smoothed_per_million",
           "title": "deaths per 1M",
-          "axis": {"titleColor": "#7a0808"},
+          "axis": {"titleColor": "#7a0808", "offset":-10},
           "scale": {"domain": [0, 50]}
         }
       }
@@ -45,8 +46,8 @@
         "y": {
           "aggregate": "average",
           "field": "people_fully_vaccinated_per_hundred",
-          "title": "people_fully_vaccinated_per_hundred",
-          "axis": {"titleColor":"#3c7e06", "offset":50},
+          "title": "percent vaccinated",
+          "axis": {"titleColor":"#3c7e06", "offset":-60},
           "scale": {"domain": [0, 100]}
         }
       }
